@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logoIb3 from '../../assets/logo_ib3_branca.png';
-import videoBg from '../../assets/videos/particle-video.mp4';
+import videoBg from '../../assets/videos/1218.mp4';
 
 const itensRotativos = [
     { type: 'logo', content: logoIb3, alt: 'Logo IB3' },
