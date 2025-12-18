@@ -11,6 +11,7 @@ import {
   LabelList,
 } from "recharts";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { trackCustomEvent } from "../../utils/metaPixel";
 
 export default function Simulador() {
   const [valor, setValor] = useState(1000);
@@ -22,7 +23,7 @@ export default function Simulador() {
     setInputDigits(String(valor));
   }, [valor]);
 
-  const taxas = { hrt: 0.0125, cdi: 0.009, poupanca: 0.005 };
+  const taxas = { hrt: 0.25 / 12, cdi: 0.009, poupanca: 0.005 };
 
   const dados = useMemo(() => {
     const now = new Date();
@@ -44,7 +45,7 @@ export default function Simulador() {
   const renderCustomBarLabel = (props) => {
     const { x, y, width, value, name } = props;
     const color =
-      name === "Seu Investimento" ? "#167ea5" : "rgba(255,255,255,0.5)";
+      name === "Seu Investimento" ? "#72c0d1" : "rgba(255,255,255,0.5)";
 
     return (
       <g>
@@ -74,10 +75,10 @@ export default function Simulador() {
   };
 
   return (
-    <section className="py-5 text-white" style={{ backgroundColor: "#0b0b0b" }}>
+    <section className="py-5 text-white" style={{ backgroundColor: "#0b0b0b" }} id="simulador">
       <div className="container py-5">
         <div className="text-center mb-5">
-          <h1 style={{ color: '#fff', fontFamily: 'Axiforma, serif', fontWeight: 400 }}>Entenda o poder de investir<br />através da plataforma <span style={{color: "#167ea5", fontWeight: 700}}>IB3 Capital</span></h1>
+          <h1 style={{ color: '#fff', fontFamily: 'Axiforma, serif', fontWeight: 400 }}>Entenda o poder de investir<br />através da plataforma <span style={{color: "#72c0d1", fontWeight: 700}}>IB3 Capital</span></h1>
         </div>
         <div className="row g-5">
           <div className="col-lg-4 d-flex flex-column justify-content-between">
@@ -96,7 +97,7 @@ export default function Simulador() {
                 type="text"
                 inputMode="numeric"
                 pattern="[0-9]*"
-                className="form-control-minimal"
+                className="form-control-minimal fw-bold"
                 value={editing ? inputDigits : `R$ ${Number(inputDigits || 0).toLocaleString('pt-BR')}`}
                 onFocus={() => {
                   setEditing(true);
@@ -112,6 +113,7 @@ export default function Simulador() {
                   setValor(clamped);
                   setInputDigits(String(clamped));
                   setEditing(false);
+                  trackCustomEvent('Realizar_Simulacao', { valor: clamped, meses });
                 }}
               />
             </div>
@@ -127,7 +129,10 @@ export default function Simulador() {
                 max="60"
                 step="6"
                 value={meses}
-                onChange={(e) => setMeses(Number(e.target.value))}
+                onChange={(e) => {
+                  setMeses(Number(e.target.value));
+                  trackCustomEvent('Realizar_Simulacao', { valor, meses: Number(e.target.value) });
+                }}
               />
             </div>
 
@@ -141,7 +146,7 @@ export default function Simulador() {
               >
                 Patrimônio final estimado
               </small>
-              <span className="h2 d-block mb-2" style={{ color: "#167ea5" }}>
+              <span className="h2 d-block mb-2 fw-bold" style={{ color: "#72c0d1" }}>
                 R${" "}
                 {dados[dados.length - 1]?.["Seu Investimento"].toLocaleString(
                   "pt-BR"
@@ -196,7 +201,7 @@ export default function Simulador() {
 
                     <Bar
                       dataKey="Seu Investimento"
-                      fill="#167ea5"
+                      fill="#72c0d1"
                       radius={[2, 2, 0, 0]}
                       barSize={150}
                     >
@@ -249,10 +254,10 @@ export default function Simulador() {
       <style>{`
                 .form-control-minimal {
                     background: transparent; border: none; border-bottom: 2px solid rgba(205, 187, 163, 0.3);
-                    border-radius: 0; color: #167ea5; font-size: 1.5rem; padding: 5px 0; width: 100%; outline: none;
+                    border-radius: 0; color: #72c0d1; font-size: 1.5rem; padding: 5px 0; width: 100%; outline: none;
                 }
                 .custom-range::-webkit-slider-runnable-track { background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px; }
-                .custom-range::-webkit-slider-thumb { background: #167ea5; margin-top: -6px; height: 16px; width: 16px; border-radius: 50%; border: none; cursor: pointer; }
+                .custom-range::-webkit-slider-thumb { background: #72c0d1; margin-top: -6px; height: 16px; width: 16px; border-radius: 50%; border: none; cursor: pointer; }
                 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
             `}</style>
     </section>

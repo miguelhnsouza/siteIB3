@@ -7,6 +7,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./index.css";
 
 import Site from "./pages/Desktop/Site";
+import DownloadApp from "./pages/Desktop/DownloadApp";
 // import Investidores from "./pages/Desktop/Investidores";
 
 
@@ -16,6 +17,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Site />} />
+        <Route path="/download-app" element={<DownloadApp />} />
       </Routes>
     </BrowserRouter>
   );

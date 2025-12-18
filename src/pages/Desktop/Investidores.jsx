@@ -64,7 +64,7 @@ export default function Investidores() {
     );
 
     return (
-        <section className="py-5" style={{ backgroundColor: '#f9f9f9' }}>
+        <section className="py-5" style={{ backgroundColor: '#f9f9f9' }} id="investidores">
             <div className="container py-4">
                 
                 {/* Header: Títulos e Descrição */}

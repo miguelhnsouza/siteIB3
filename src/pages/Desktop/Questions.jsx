@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "@/pages/Desktop/questions.css";
 
 const faqs = [
@@ -93,6 +93,7 @@ const faqs = [
 ];
 
 export default function Questions() {
+  const [activeTab, setActiveTab] = useState('investidores'); // Definir 'investidores' como padrão
   return (
     <section className="container py-5 faq-section" id="questions">
       <h1 className="fw-thin mb-5 text-center">Perguntas Frequentes</h1>
@@ -104,10 +105,8 @@ export default function Questions() {
             {faqs.map((cat, index) => (
               <li className="nav-item mb-2" key={cat.slug}>
                 <button
-                  className={`nav-link ${index === 0 ? "active" : ""} text-start w-100 py-3 px-4 fs-6 fw-bold`}
-                  data-bs-toggle="pill"
-                  data-bs-target={`#${cat.slug}`}
-                  aria-selected={index === 0 ? "true" : "false"}
+                  className={`nav-link ${activeTab === cat.slug ? "active" : ""} text-start w-100 py-3 px-4 fs-6 fw-bold`}
+                  onClick={() => setActiveTab(cat.slug)}
                 >
                   <i className={`${cat.icon} me-2`}></i>
                   {cat.categoria}
@@ -121,7 +120,7 @@ export default function Questions() {
         <div className="col-md-8">
           <div className="tab-content">
             {faqs.map((cat, index) => (
-              <div className={`tab-pane fade ${index === 0 ? "show active" : ""}`} id={cat.slug} key={cat.slug}>
+              <div className={`tab-pane fade ${activeTab === cat.slug ? "show active" : ""}`} key={cat.slug}>
                 <div className="accordion" id={`accordion-${cat.slug}`}>
                   {cat.perguntas.map((p, i) => (
                     <div className="accordion-item-question" key={i}>

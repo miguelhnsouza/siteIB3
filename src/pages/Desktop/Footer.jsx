@@ -2,6 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import logoIb3 from "@/assets/logo_ib3_branca.png";
+import { trackCustomEvent } from "../../utils/metaPixel";
 
 import { Link, redirect } from "react-router-dom";
 
@@ -18,7 +19,7 @@ export default function Footer() {
               <img
                 src={logoIb3}
                 alt="LoteMobile"
-                style={{ height: "60px" }}
+                style={{ height: "40px" }}
               />
             </div>
             <p className="w-75 mb-5 fs-6" style={{ lineHeight: "1.4" }}>
@@ -26,10 +27,10 @@ export default function Footer() {
             </p>
 
             <div className="d-flex gap-3 mt-3 fs-4">
-              <a href="https://www.instagram.com/ib3capital/" className="text-light" target="blank"><i className="bi bi-instagram"></i></a>
-              <a href="https://www.linkedin.com/company/ib3capital/" className="text-light" target="blank"><i className="bi bi-linkedin"></i></a>
-              <a href="https://www.youtube.com/@ib3capital" className="text-light" target="blank"><i className="bi bi-youtube"></i></a>
-              <a href="https://www.facebook.com/ib3capital" className="text-light" target="blank"><i className="bi bi-facebook"></i></a>
+              <a href="https://www.instagram.com/ib3capital/" className="text-light" target="blank" onClick={() => trackCustomEvent('Social_Media_Click', { platform: 'Instagram' })}><i className="bi bi-instagram"></i></a>
+              {/* <a href="https://www.linkedin.com/company/ib3capital/" className="text-light" target="blank"><i className="bi bi-linkedin"></i></a> */}
+              {/* <a href="https://www.youtube.com/@ib3capital" className="text-light" target="blank"><i className="bi bi-youtube"></i></a> */}
+              <a href="https://www.facebook.com/ib3capital" className="text-light" target="blank" onClick={() => trackCustomEvent('Social_Media_Click', { platform: 'Facebook' })}><i className="bi bi-facebook"></i></a>
             </div>
           </div>
 
@@ -37,14 +38,13 @@ export default function Footer() {
             <h6 className="fw-bold fs-3 mb-3">Links Úteis</h6>
             <ul className="list-unstyled fs-6 mt-5 gap-3 d-flex flex-column">
               <li><a href="#header" className="text-light text-decoration-none">Início</a></li>
-              <li><a href="#videos" className="text-light text-decoration-none">Funcionalidades</a></li>
-              <li><a href="#integrations" className="text-light text-decoration-none">Integrações</a></li>
-              <li><a href="#questions" className="text-light text-decoration-none">FAQ</a></li>
-              <li><a href="#comments" className="text-light text-decoration-none">Depoimentos</a></li>
-              <li><a href="#contact" className="text-light text-decoration-none">Contatos</a></li>
+              <li><a href="#videos" className="text-light text-decoration-none">Seja Investidor</a></li>
+              <li><a href="#integrations" className="text-light text-decoration-none">Simulação</a></li>
+              <li><a href="#questions" className="text-light text-decoration-none">Oportunidades</a></li>
+              <li><a href="#comments" className="text-light text-decoration-none">FAQ</a></li>
             </ul>
           </div>
-
+{/* 
           <div className="col-md-2 w-auto">
             <h6 className="fw-bold mb-3 fs-3">Serviços</h6>
             <ul className="list-unstyled fs-6 mt-5 gap-3 d-flex flex-column">
@@ -56,7 +56,7 @@ export default function Footer() {
               <li>Inteligência Artificial</li>
               <li>Aplicativo Lote Mobile</li>
             </ul>
-          </div>
+          </div> */}
 
           <div className="col-md-3 w-auto">
             <h6 className="fw-bold mb-3 fs-3">Contatos</h6>
@@ -67,7 +67,7 @@ export default function Footer() {
               </li>
               <li className="mb-2">
                 <i className="bi bi-envelope me-2"></i>
-                vendas@ibsystem.com.br
+                suporte@ib3capital.com.br
               </li>
               <li>
                 <i className="bi bi-clock me-2"></i>

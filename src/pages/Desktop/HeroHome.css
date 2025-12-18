@@ -27,7 +27,7 @@
     display: flex;
     align-items: center;
     background-color: #000; /* Fallback background */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), 
                       url('../../assets/banner1.jpg');
     background-repeat: no-repeat;
     background-position: center;
@@ -37,8 +37,8 @@
 
 .hero-title {
     font-family: 'Axiforma', sans-serif; /* Usando a fonte Axiforma */
-    font-size: 4rem;
-    font-weight: 700;
+    font-size: 3.5rem;
+    font-weight: 300;
     line-height: 1.1;
     margin-bottom: 1.5rem;
 }
@@ -46,6 +46,7 @@
 .hero-lead {
     font-family: 'Axiforma', sans-serif;
     max-width: 600px;
+    font-weight: 100;
     color: rgba(255, 255, 255, 0.9);
 }
 
