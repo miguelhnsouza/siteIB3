@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'Axiforma';
+    src: url('../../assets/fonts/Axiforma-Regular.woff2') format('woff2'),
+         url('../../assets/fonts/Axiforma-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Axiforma';
+    src: url('../../assets/fonts/Axiforma-Medium.woff2') format('woff2'),
+         url('../../assets/fonts/Axiforma-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Axiforma';
+    src: url('../../assets/fonts/Axiforma-Bold.woff2') format('woff2'),
+         url('../../assets/fonts/Axiforma-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+.hero-home {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: #000; /* Fallback background */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                      url('../../assets/banner1.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: #fff;
+}
+
+.hero-title {
+    font-family: 'Axiforma', sans-serif; /* Usando a fonte Axiforma */
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-lead {
+    font-family: 'Axiforma', sans-serif;
+    max-width: 600px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.store-badge {
+    height: 45px;
+    transition: opacity 0.3s;
+}
+
+.store-badge:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+}
